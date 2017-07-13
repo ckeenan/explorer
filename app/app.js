@@ -25,9 +25,10 @@ angular.module('ethExplorer', ['ngRoute','ui.bootstrap'])
                 redirectTo: '/'
             });
     }])
-    .run(function($rootScope) {
+    .run(function($rootScope, $location) {
         var web3 = new Web3();
-        var eth_node_url = 'http://ethereum:8545'; // TODO: remote URL
+        var host = $location.host();
+        var eth_node_url = `http://${host}:8545`; // TODO: remote URL
 	web3.setProvider(new web3.providers.HttpProvider(eth_node_url));
         $rootScope.web3 = web3;
         function sleepFor( sleepDuration ){
