@@ -1,5 +1,4 @@
 'use strict';
-var protocol = process.env.APP_PROTOCOL || 'http';
 
 angular.module('ethExplorer', ['ngRoute','ui.bootstrap'])
 
@@ -29,6 +28,7 @@ angular.module('ethExplorer', ['ngRoute','ui.bootstrap'])
     .run(function($rootScope, $location) {
         var web3 = new Web3();
         var host = $location.host();
+	var protocol = $location.protocol();
         var eth_node_url = `${protocol}://${host}:8545`; // TODO: remote URL
 	web3.setProvider(new web3.providers.HttpProvider(eth_node_url));
         $rootScope.web3 = web3;
